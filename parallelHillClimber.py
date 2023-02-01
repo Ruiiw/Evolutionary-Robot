@@ -6,14 +6,14 @@ import os
 class PARALLEL_HILL_CLIMBER:
 
     def __init__(self):
+        os.system("rm brain*.nndf")
+        os.system("rm fitness*.txt")
         self.nextAvailableID = 0
         self.parents = {}
         for i in range(c.populationSize):
             self.parents[i] = SOLUTION(self.nextAvailableID)
             self.nextAvailableID += 1
         
-        os.system("rm brain*.nndf")
-        os.system("rm fitness*.txt")
 
     def Evolve(self):
         self.Evaluate(self.parents)
@@ -36,8 +36,8 @@ class PARALLEL_HILL_CLIMBER:
             self.nextAvailableID += 1
 
     def Mutate(self):
-        for child in self.children:
-            self.children[child].Mutate()
+        for i in self.parents:
+            self.children[i].Mutate()
 
     def Select(self):
         for i in self.parents:
@@ -63,10 +63,10 @@ class PARALLEL_HILL_CLIMBER:
 
     def Evaluate(self, solutions):
         for parent in solutions:
-            self.parents[parent].Start_Simulation(" DIRECT")
+            solutions[parent].Start_Simulation(" DIRECT")
 
         for parent in solutions:
-            self.parents[parent].Wait_For_Simulation_To_End()
+            solutions[parent].Wait_For_Simulation_To_End()
 
     
 

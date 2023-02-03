@@ -12,4 +12,4 @@ numberOfGenerations = 30
 
 numTimeSteps = 1000
 
-populationSize = 2
+populationSize = 10

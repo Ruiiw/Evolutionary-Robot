@@ -41,7 +41,7 @@ class PARALLEL_HILL_CLIMBER:
 
     def Select(self):
         for i in self.parents:
-            if self.parents[i].fitness > self.children[i].fitness:
+            if self.parents[i].fitness < self.children[i].fitness:
                 self.parents[i] = self.children[i]
 
     def Print(self):
@@ -52,13 +52,12 @@ class PARALLEL_HILL_CLIMBER:
        
 
     def Show_Best(self):
-        #self.parent.Evaluate(" GUI")
-        minFit = self.parents[0].fitness
+        maxFit = self.parents[0].fitness
         for i in self.parents:
-            minFit = min(self.parents[i].fitness, minFit)
+            maxFit = max(self.parents[i].fitness, maxFit)
 
         for i in self.parents:
-            if self.parents[i].fitness == minFit:
+            if self.parents[i].fitness == maxFit:
                 self.parents[i].Start_Simulation(' GUI')
 
     def Evaluate(self, solutions):
